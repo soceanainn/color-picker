@@ -1,0 +1,24 @@
+<!doctype html>
+	<head></head>
+	<body>
+		<div style = "width: 100%; text-align: center; padding: 20px;"><h2>Color Picker Example:</h2></div>
+		<div id="containerId" style = "width: 80%; margin-left: 10%; height: 30vh;"></div>
+		<div id="colorDisplay" style = "width: 20%; padding: 20px; margin: 5px 40%;  border-radius: 5px; text-align: center"></div>
+
+		<script type="text/javascript" src="color-picker.js"></script>
+		<script>
+			function displayColor(event){
+				let color = getColorForCanvasEvent(event);
+				let output = document.getElementById("colorDisplay");
+				if (color.r > 200 && color.g > 200) output.style.color = "#666";
+				else if (Math.min(Math.min(color.r, color.g), color.b) < 128) output.style.color = "#FCFCFC";
+				else output.style.color = "#666";
+				output.innerHTML = color + " " + color.toHex();
+				output.style.backgroundColor = color;
+			}
+
+			addColorPalette("containerId");
+			attachOnClick(displayColor);
+		</script>
+	</body>
+</html>
